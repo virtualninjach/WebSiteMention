@@ -26,8 +26,8 @@ $mention = (("Donald Trump","Trump"),
 
 $DBServer="Workstation1"
 $DB="websiteMention"
-$user="mention"
-$password = "!Lyndon2"
+$user=""
+$password = ""
 
 $cn = new-object System.Data.SqlClient.SqlConnection("Database=$DB;Server=$DBServer;User ID=$user;Password=$password;")
 $cn.open() 
