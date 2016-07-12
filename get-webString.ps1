@@ -1,7 +1,7 @@
 ﻿
 
 
-$json = Get-Content -raw -path E:\Projects\WebSiteMention\config.json
+$json = Get-Content -raw -path .\config.json
 
 $config = $json | ConvertFrom-Json
 
