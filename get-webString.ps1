@@ -7,8 +7,13 @@ $config = $json | ConvertFrom-Json
 
 $DBServer="server"
 $DB="websiteMention"
+<<<<<<< HEAD
 $user="userid"
 $password = "password"
+=======
+$user=""
+$password = ""
+>>>>>>> origin/master
 
 $cn = new-object System.Data.SqlClient.SqlConnection("Database=$DB;Server=$DBServer;User ID=$user;Password=$password;")
 $cn.open() 
