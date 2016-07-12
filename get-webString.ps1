@@ -1,55 +1,37 @@
 ﻿
-$siteArray = (("Fox News","http://www.foxnews.com/"),
-               ("CNN","http://www.cnn.com/"),
-                ("Huffington Post","http://www.huffingtonpost.com/"),
-                ("Yahoo News","https://www.yahoo.com/news/"),
-                ("Google News","https://news.google.com/"),
-                ("New York Times","http://www.nytimes.com/"),
-                ("NBC News","http://www.nbcnews.com/"),
-                ("Daily Mail","http://www.dailymail.co.uk/ushome/index.html"),
-                ("Washington Post","https://www.washingtonpost.com/"),
-                ("The Guardian","http://www.theguardian.com/us"),
-                ("Wall Street Journal","http://www.wsj.com/"),
-                ("ABC News","http://abcnews.go.com/"),
-                ("BBC","http://www.bbc.com/news"),
-                ("USA Today","http://www.usatoday.com/"),
-                ("LA Times","http://www.latimes.com/"),
-                ("Associated Press","http://ap.org/"),
-                ("Reuters","http://www.reuters.com/"),
-                ("Politico","http://www.politico.com/"),
-                ("Bloomberg","http://www.bloomberg.com/"))
 
-$mention = (("Donald Trump","Trump"),
-            ("Donald Trump","Donald Trump"),
-            ("Hillary Clinton","Hillary"),
-            ("Hillary Clinton","Hillary Clinton"))
 
-$DBServer="Workstation1"
+$json = Get-Content -raw -path E:\Projects\WebSiteMention\config.json
+
+$config = $json | ConvertFrom-Json
+
+$DBServer="server"
 $DB="websiteMention"
-$user="mention"
-$password = "!Lyndon2"
+$user="userid"
+$password = "password"
 
 $cn = new-object System.Data.SqlClient.SqlConnection("Database=$DB;Server=$DBServer;User ID=$user;Password=$password;")
 $cn.open() 
 
 
-foreach ($site in $siteArray)
+foreach ($site in $config.websites)
 {
-    foreach($name in $mention)
-    {
-        $datawriter =""
-        $$name[0]
-        $name[1]
-        $site[0]
-        $site[1]
-        
-        $siteContent = Invoke-WebRequest -UseBasicParsing -Uri $site[1]
+    $siteFormalName = $site.websiteName
+    $siteURL = $site.websiteURL
 
-        $mentionCount = $siteContent.Content | Select-String -Pattern $name[1] -AllMatches | Select-Object -ExpandProperty Matches | Measure-Object | Select-Object -ExpandProperty Count
-        $mentionCount
+    foreach($mentionPair in $config.names)
+    {
+        $mentionCount = 0
+        $stringToLookFor = $mentionPair.alias
+        $stringFormalName = $mentionPair.name
+        
+        $siteContent = Invoke-WebRequest -UseBasicParsing -Uri $siteURL
+
+        $mentionCount = $siteContent.Content | Select-String -Pattern $stringToLookFor -AllMatches | Select-Object -ExpandProperty Matches | Measure-Object | Select-Object -ExpandProperty Count
 
         #Run SQL Serve Update
-        $Query = "Insert mentionModel (Name,WebSiteURL,WebSiteAlias,NameAlias,MentionCount) values ('$name[0]','$site[1]','$site[0]','$name[1]',$mentionCount)"
+        $Query = "Insert mentionModel (Name,WebSiteURL,WebSiteAlias,NameAlias,MentionCount) values ('$stringFormalName','$siteURL','$siteFormalName','$stringToLookFor',$mentionCount)"
+        
         try
         {
             $cmd = new-object System.Data.SqlClient.SqlCommand $Query,$cn
@@ -65,7 +47,7 @@ foreach ($site in $siteArray)
         {
             $ErrorActionPreference = "Continue"
         }
-        
+    
     }
     
     

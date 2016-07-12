@@ -1,0 +1,31 @@
+{
+    "websites":[
+				{"websiteName":"Fox News","websiteURL":"http://www.foxnews.com/"},
+				{"websiteName":"CNN","websiteURL":"http://www.cnn.com/"},
+                {"websiteName":"Huffington Post","websiteURL":"http://www.huffingtonpost.com/"},
+                {"websiteName":"Yahoo News","websiteURL":"https://www.yahoo.com/news/"},
+                {"websiteName":"Google News","websiteURL":"https://news.google.com/"},
+                {"websiteName":"New York Times","websiteURL":"http://www.nytimes.com/"},
+                {"websiteName":"NBC News","websiteURL":"http://www.nbcnews.com/"},
+                {"websiteName":"Daily Mail","websiteURL":"http://www.dailymail.co.uk/ushome/index.html"},
+                {"websiteName":"Washington Post","websiteURL":"https://www.washingtonpost.com/"},
+                {"websiteName":"The Guardian","websiteURL":"http://www.theguardian.com/us"},
+                {"websiteName":"Wall Street Journal","websiteURL":"http://www.wsj.com/"},
+                {"websiteName":"ABC News","websiteURL":"http://abcnews.go.com/"},
+                {"websiteName":"BBC","websiteURL":"http://www.bbc.com/news"},
+                {"websiteName":"USA Today","websiteURL":"http://www.usatoday.com/"},
+                {"websiteName":"LA Times","websiteURL":"http://www.latimes.com/"},
+                {"websiteName":"Associated Press","websiteURL":"http://ap.org/"},
+                {"websiteName":"Reuters","websiteURL":"http://www.reuters.com/"},
+                {"websiteName":"Politico","websiteURL":"http://www.politico.com/"},
+                {"websiteName":"Bloomberg","websiteURL":"http://www.bloomberg.com/"}
+				
+				],
+				
+"names":[
+			{"name":"Donald Trump","alias":"Trump"},
+			{"name":"Donald Trump","alias":"Donald Trump"},
+			{"name":"Hillary Clinton","alias":"Hillary"},
+			{"name":"Hillary Clinton","alias":"Hillary Clinton"}
+			]
+}
