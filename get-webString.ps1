@@ -7,13 +7,11 @@ $config = $json | ConvertFrom-Json
 
 $DBServer="server"
 $DB="websiteMention"
-<<<<<<< HEAD
+
 $user="userid"
 $password = "password"
-=======
-$user=""
-$password = ""
->>>>>>> origin/master
+
+
 
 $cn = new-object System.Data.SqlClient.SqlConnection("Database=$DB;Server=$DBServer;User ID=$user;Password=$password;")
 $cn.open() 
@@ -46,7 +44,7 @@ foreach ($site in $config.websites)
         {
                #Write error message on screen and to a LOG file
                write-host $_.Exception.Message
-               $_.Exception.Message | Out-File C:\logs\mention-error-log.txt -Append
+               $_.Exception.Message | Out-File .\mention-error-log.txt -Append
         }
         finally
         {
